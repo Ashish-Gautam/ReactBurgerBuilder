@@ -9,13 +9,16 @@ const controls=[
 ]
 const buildControls=(props)=>(
     <div className={styleClass.BuildControls}>
+        <p>Current Price: <strong>{props.price.toFixed(2)}</strong></p>
         {controls.map(buildControl=>
         <BuildControl 
         key={buildControl.label} 
         label={buildControl.label} 
-        ingredientAdded={()=>props.addIngredient('meat')}/>
+        ingredientAdded={()=>props.addIngredient(buildControl.type)}
+        removeHandler={()=>props.removeHandler(buildControl.type)}
+        disabledHandler={props.disabledHandler[buildControl.type]}/>
          )}
-
+        <button disabled={props.purchasable} className={styleClass.OrderButton} onClick={props.isPurchasing}>ORDER NOW</button>
     </div>
 )
 export default buildControls;
