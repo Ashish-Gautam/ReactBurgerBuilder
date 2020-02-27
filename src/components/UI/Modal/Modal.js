@@ -1,8 +1,11 @@
 import React from 'react'
 import ModalStyle from'./Modal.module.css'
-
+import Backdrop from '../Backdrop/Backdrop'
+import Aux from '../../../hoc/Auxiliary'
 const modal=(props)=>
 (
+    <Aux>
+      <Backdrop show={props.shouldShow} clicked={props.modalClosed}/>  
     <div className={ModalStyle.Modal}
     style={{
         transform:props.shouldShow?'translateY(0)':'translateY(-100vh)',
@@ -10,7 +13,8 @@ const modal=(props)=>
     }}>
         {props.children}
     </div>
-    
+   
+    </Aux> 
 )
 
 export default modal
